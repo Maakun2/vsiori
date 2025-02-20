@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>まさログ風サイト</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-left">
+                <a href="/" class="logo">
+                    <img src="images/logo.png" alt="まさログ風ロゴ">
+                </a>
+            </div>
+            <div class="header-right">
+                <nav>
+                    <ul>
+                        <li><a href="#">まさログについて</a></li>
+                        <li><a href="#">保有ポイント</a></li>
+                        <li><a href="#">予約確認</a></li>
+                        <li><a href="#">行ったお店</a></li>
+                        <li><a href="#">保存リスト</a></li>
+                        <li><a href="#">無料会員登録/ログイン</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="search-bar">
+            <form action="#" method="get">
+                <div class="search-area">
+                    <input type="text" placeholder="エリア・駅 [例:渋谷、新宿]" value="那覇 泊港">
+                    <button type="button" class="clear-button">✕</button>
+                </div>
+                <div class="search-keyword">
+                    <input type="text" placeholder="キーワード [例:焼肉、店名、個室]">
+                </div>
+                <div class="search-date">
+                    <input type="text" value="2025/2/20(木)">
+                </div>
+                <div class="search-time">
+                    <input type="text" value="19:00">
+                </div>
+                <div class="search-people">
+                    <input type="text" value="2名">
+                </div>
+                <div class="search-options">
+                    <select>
+                        <option>絞り込む</option>
+                    </select>
+                </div>
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="#">まさログ</a> > <a href="#">全国 グルメ</a>
+        </div>
+
+        <div class="content-wrapper">
+            <aside class="sidebar">
+                <section class="area-search">
+                    <h2>エリア から探す</h2>
+                    <div class="area-list">
+                        <ul>
+                            <li>
+                                <div class="category-name">居酒屋</div>
+                                <ul class="sub-area-list">
+                                    <li><a href="#" class="area-link" data-area="tomari">ルートイン那覇泊港周辺</a></li>
+                                    <li><a href="#" class="area-link" data-area="grantia">ルートイングランティア那覇周辺</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="category-name">コンビニ</div>
+                                <ul class="sub-area-list">
+                                    <li><a href="#" class="area-link" data-area="tomari-conv">ルートイン那覇泊港周辺</a></li>
+                                    <li><a href="#" class="area-link" data-area="grantia-conv">ルートイングランティア那覇周辺</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="category-name">お土産屋</div>
+                                <ul class="sub-area-list">
+                                    <li><a href="#" class="area-link" data-area="souvenir">お土産屋</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="map-view">
+                        <a href="#">このエリアを地図で見る</a>
+                    </div>
+                </section>
+            </aside>
+
+            <div class="main-content">
+                <h1>全国のお店</h1>
+                <div class="search-results">
+                    <div class="result-header">
+                        <div class="result-tabs">
+                            <a href="#" class="active sort-link" data-sort="rating">評価順</a>
+                            <a href="#" class="sort-link" data-sort="hours">営業時刻順</a>
+                        </div>
+                    </div>
+                    <div class="result-count">
+                        1～20 件を表示 / 全 874004 件
+                    </div>
+                    <div class="restaurant-list">
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">大衆居酒屋らいず酒場 【RAIZU SAKABA】串焼き</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.8</span>
+                                <span class="restaurant-price">¥4,000~5,000</span>
+                                <span class="restaurant-hours">営業時間：～3:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">TACHINOMIYA BAR 国際通り店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.8</span>
+                                <span class="restaurant-price">¥1,000~2,000</span>
+                                <span class="restaurant-hours">営業時間：～1:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">沖縄酒場ハイサイ県庁前久茂地店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.8</span>
+                                <span class="restaurant-price">¥2,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～0:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">酒場しょくどう残心 那覇本店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.8</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～1:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">旬鮮魚・炭火焼き 縁 那覇</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.7</span>
+                                <span class="restaurant-price">価格未定</span>
+                                <span class="restaurant-hours">営業時間：～0:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">大衆酒場ハチドリ</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.6</span>
+                                <span class="restaurant-price">¥1,000~2,000</span>
+                                <span class="restaurant-hours">営業時間：～4:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">和磊 久茂地</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.6</span>
+                                <span class="restaurant-price">価格未定</span>
+                                <span class="restaurant-hours">営業時間：～0:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">那覇ちょーちょ</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.6</span>
+                                <span class="restaurant-price">価格未定</span>
+                                <span class="restaurant-hours">営業時間：～23:30</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">大衆とり酒場 とりいちず 那覇松山店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.5</span>
+                                <span class="restaurant-price">¥2,000~3,000</span>
+                                <span class="restaurant-hours">営業時間：～8:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">沖縄料理&まさ飲み放題 ネオ大衆酒場クモジシンセカイ 沖縄国際通り店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.5</span>
+                                <span class="restaurant-price">価格未定</span>
+                                <span class="restaurant-hours">営業時間：～3:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">酒場まてつ 那覇久茂地店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.5</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～1:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">YSS</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.4</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～0:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">野菜の酒場。 クサワケセカンド 那覇国際通り店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.4</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～0:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">りょう次</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.3</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～23:30</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">【沖縄料理居酒屋】抱瓶(だちびん) 那覇久茂地店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.3</span>
+                                <span class="restaurant-price">価格未定</span>
+                                <span class="restaurant-hours">営業時間：～0:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">民謡ステージ歌姫</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.3</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～0:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">大安丸</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.2</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～0:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">海人居酒屋 一郎屋 美栄橋駅前店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.0</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～23:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari">
+                            <div class="restaurant-name">餃子酒場 金五郎 本店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.0</span>
+                                <span class="restaurant-price">¥2,000~3,000</span>
+                                <span class="restaurant-hours">営業時間：～23:30</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia">
+                            <div class="restaurant-name">酒場 宙太</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.8</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：時間未定</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia">
+                            <div class="restaurant-name">よいよい亭</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.7</span>
+                                <span class="restaurant-price">¥1,000~3,000</span>
+                                <span class="restaurant-hours">営業時間：～1:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia">
+                            <div class="restaurant-name">沖縄中華酒場『オロダン劇場～東町店』&大衆カウンター酒場『せんべろHIGASHI』</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.6</span>
+                                <span class="restaurant-price">¥2,000~3,000</span>
+                                <span class="restaurant-hours">営業時間：～2:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia">
+                            <div class="restaurant-name">泡盛ダイニングのみ亭</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.6</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～0:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia">
+                            <div class="restaurant-name">癒心家酒場 一縷（いちる）</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.5</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～23:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia">
+                            <div class="restaurant-name">和きっちん九</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.5</span>
+                                <span class="restaurant-price">価格未定</span>
+                                <span class="restaurant-hours">営業時間：～23:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia">
+                            <div class="restaurant-name">のろし</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.4</span>
+                                <span class="restaurant-price">¥1~1,000</span>
+                                <span class="restaurant-hours">営業時間：～23:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia">
+                            <div class="restaurant-name">魚じょぉぐぅ</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.3</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～0:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia">
+                            <div class="restaurant-name">炉ばた焼 泉崎</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.3</span>
+                                <span class="restaurant-price">¥2,000~3,000</span>
+                                <span class="restaurant-hours">営業時間：～0:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia">
+                            <div class="restaurant-name">ビンビール酒場韋駄天 那覇久米店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.2</span>
+                                <span class="restaurant-price">¥1,000~3,000</span>
+                                <span class="restaurant-hours">営業時間：～23:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia">
+                            <div class="restaurant-name">かばす亭</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.1</span>
+                                <span class="restaurant-price">¥2,000~3,000</span>
+                                <span class="restaurant-hours">営業時間：～2:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia">
+                            <div class="restaurant-name">鉄板ステーキと沖縄料理 団欒酒場赤とんぼ</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.0</span>
+                                <span class="restaurant-price">¥3,000~4,000</span>
+                                <span class="restaurant-hours">営業時間：～23:30</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari-conv">
+                            <div class="restaurant-name">ファミリーマート 前島二丁目店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-hours">24時間営業</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari-conv">
+                            <div class="restaurant-name">ローソン とまりん店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-hours">24時間営業</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="tomari-conv">
+                            <div class="restaurant-name">セブン-イレブン 那覇前島店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-hours">24時間営業</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia-conv">
+                            <div class="restaurant-name">セブンイレブン 那覇西２丁目店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-hours">24時間営業</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia-conv">
+                            <div class="restaurant-name">ローソン 那覇西一丁目店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-hours">24時間営業</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="grantia-conv">
+                            <div class="restaurant-name">ファミリーマート 辻一丁目店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-hours">24時間営業</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">御菓子御殿 国際通り松尾店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.0</span>
+                                <span class="restaurant-hours">営業時間：～22:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">守礼堂 本店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.6</span>
+                                <span class="restaurant-hours">営業時間：～22:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">琉球マーケット</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.0</span>
+                                <span class="restaurant-hours">営業時間：～23:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">御菓子御殿 国際通りくもじ店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.0</span>
+                                <span class="restaurant-hours">営業時間：～21:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">ジャンピングシーサー</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.5</span>
+                                <span class="restaurant-hours">営業時間：～22:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">東宝堂 ２号店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.6</span>
+                                <span class="restaurant-hours">営業時間：～22:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">ハイサイおじさん</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.3</span>
+                                <span class="restaurant-hours">営業時間：～21:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">ハイサイおばさん</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.3</span>
+                                <span class="restaurant-hours">営業時間：～19:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">沖縄産直市場</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.3</span>
+                                <span class="restaurant-hours">営業時間：～20:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">おきなわ屋 本店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.0</span>
+                                <span class="restaurant-hours">営業時間：～22:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">御菓子御殿 国際通り牧志店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.0</span>
+                                <span class="restaurant-hours">営業時間：～21:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">塩の専門店 塩屋(まーすやー)国際通り店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.2</span>
+                                <span class="restaurant-hours">営業時間：～21:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">想いっきり沖縄 国際通り店</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.4</span>
+                                <span class="restaurant-hours">営業時間：～19:00</span>
+                            </div>
+                        </div>
+                        <div class="restaurant-item" data-area="souvenir">
+                            <div class="restaurant-name">チャンプルー家</div>
+                            <div class="restaurant-info">
+                                <span class="restaurant-rating">★4.5</span>
+                                <span class="restaurant-hours">営業時間：～22:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // エリアリンクのクリックイベント
+            const areaLinks = document.querySelectorAll('.area-link');
+            const restaurants = document.querySelectorAll('.restaurant-item');
+            const resultCount = document.querySelector('.result-count');
+            const sortLinks = document.querySelectorAll('.sort-link');
+
+            // 並び替え関数
+            function sortRestaurants(sortType) {
+                const restaurantList = document.querySelector('.restaurant-list');
+                const restaurantArray = Array.from(restaurants);
+
+                restaurantArray.sort((a, b) => {
+                    if (sortType === 'rating') {
+                        const ratingA = parseFloat(a.querySelector('.restaurant-rating')?.textContent?.replace('★', '') || '0');
+                        const ratingB = parseFloat(b.querySelector('.restaurant-rating')?.textContent?.replace('★', '') || '0');
+                        return ratingB - ratingA;
+                    } else if (sortType === 'hours') {
+                        const hoursA = a.querySelector('.restaurant-hours')?.textContent?.match(/～(\d+):(\d+)/) || ['', '24', '00'];
+                        const hoursB = b.querySelector('.restaurant-hours')?.textContent?.match(/～(\d+):(\d+)/) || ['', '24', '00'];
+                        const timeA = parseInt(hoursA[1]) * 60 + parseInt(hoursA[2]);
+                        const timeB = parseInt(hoursB[1]) * 60 + parseInt(hoursB[2]);
+                        return timeB - timeA;
+                    }
+                    return 0;
+                });
+
+                restaurantArray.forEach(restaurant => {
+                    restaurantList.appendChild(restaurant);
+                });
+            }
+
+            // 並び替えタブのクリックイベント
+            sortLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sortLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    sortRestaurants(this.getAttribute('data-sort'));
+                });
+            });
+
+            areaLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const selectedArea = this.getAttribute('data-area');
+                    let visibleCount = 0;
+
+                    restaurants.forEach(restaurant => {
+                        if (restaurant.getAttribute('data-area') === selectedArea) {
+                            restaurant.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            restaurant.style.display = 'none';
+                        }
+                    });
+
+                    resultCount.textContent = `1～${visibleCount} 件を表示 / 全 ${visibleCount} 件`;
+
+                    const breadcrumb = document.querySelector('.breadcrumb');
+                    breadcrumb.innerHTML = `<a href="#">まさログ</a> > <a href="#">${this.textContent}</a>`;
+
+                    const mainTitle = document.querySelector('.main-content h1');
+                    mainTitle.textContent = `${this.textContent}のお店`;
+
+                    // エリア選択時にデフォルトの評価順で並び替え
+                    sortRestaurants('rating');
+                    sortLinks.forEach(l => {
+                        l.classList.remove('active');
+                        if (l.getAttribute('data-sort') === 'rating') {
+                            l.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // 初期表示時に評価順で並び替え
+            sortRestaurants('rating');
+        });
+    </script>
+</body>
+</html> 
