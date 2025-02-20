@@ -1,0 +1,340 @@
+/* 全体のリセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* ヘッダー */
+header {
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 30px;
+}
+
+.header-right nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.header-right nav ul li {
+    margin-left: 20px;
+}
+
+.header-right nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+}
+
+/* 検索バー */
+.search-bar {
+    background-color: #f8f8f8;
+    padding: 15px 20px;
+}
+
+.search-bar form {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.search-bar input,
+.search-bar select {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-area {
+    position: relative;
+    flex: 2;
+}
+
+.search-keyword {
+    flex: 2;
+}
+
+.search-date,
+.search-time,
+.search-people {
+    flex: 1;
+}
+
+.clear-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+}
+
+.search-button {
+    background-color: #FA0;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* メインコンテンツ */
+.content-wrapper {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 30px;
+}
+
+/* パンくずリスト */
+.breadcrumb {
+    max-width: 1200px;
+    margin: 10px auto;
+    font-size: 12px;
+}
+
+.breadcrumb a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+/* サイドバー */
+.sidebar {
+    width: 250px;
+}
+
+.area-search h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.area-list ul {
+    list-style: none;
+}
+
+.area-list > ul > li {
+    margin-bottom: 20px;
+}
+
+.area-list > ul > li:last-child {
+    margin-bottom: 0;
+}
+
+.category-name {
+    font-weight: bold;
+    color: #333;
+    padding: 8px 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+/* 居酒屋カテゴリーの背景設定 */
+.area-list > ul > li:first-child {
+    background-image: url('../images/izakaya-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.area-list > ul > li:first-child .category-name {
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+    font-size: 18px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.area-list > ul > li:first-child .sub-area-list a {
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.area-list > ul > li:first-child .sub-area-list a:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+}
+
+.area-list > ul > li:first-child .sub-area-list li {
+    margin: 10px 0;
+}
+
+.sub-area-list {
+    padding-left: 15px;
+}
+
+.sub-area-list li {
+    margin: 8px 0;
+}
+
+.area-list a {
+    text-decoration: none;
+    color: #0066cc;
+}
+
+.map-view {
+    margin-top: 15px;
+}
+
+.map-view a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+/* メインコンテンツ */
+.main-content {
+    flex: 1;
+}
+
+.main-content h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.result-tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.result-tabs a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+}
+
+.result-tabs a.active {
+    background-color: #FA0;
+    color: white;
+    border-radius: 4px;
+}
+
+.result-count {
+    color: #666;
+    font-size: 12px;
+}
+
+/* 店舗一覧 */
+.restaurant-list {
+    margin-top: 20px;
+}
+
+.restaurant-item {
+    border: 1px solid #e9e9e9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+/* 居酒屋店舗の背景設定 */
+[data-area="tomari"], [data-area="grantia"] {
+    background-image: url('../images/izakaya-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+[data-area="tomari"]::before, [data-area="grantia"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+[data-area="tomari"] .restaurant-name,
+[data-area="grantia"] .restaurant-name {
+    position: relative;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+[data-area="tomari"] .restaurant-info,
+[data-area="grantia"] .restaurant-info {
+    position: relative;
+    color: #fff;
+}
+
+[data-area="tomari"] .restaurant-price,
+[data-area="grantia"] .restaurant-price,
+[data-area="tomari"] .restaurant-hours,
+[data-area="grantia"] .restaurant-hours {
+    color: #fff;
+}
+
+.restaurant-item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.restaurant-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.restaurant-info {
+    display: flex;
+    gap: 20px;
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.restaurant-rating {
+    color: #FA0;
+    font-weight: bold;
+}
+
+.restaurant-price {
+    color: #666;
+}
+
+.restaurant-hours {
+    color: #666;
+}
+
+/* コンビニ用のスタイル */
+[data-area="tomari-conv"] .restaurant-info,
+[data-area="grantia-conv"] .restaurant-info {
+    justify-content: flex-end;
+}
+
+[data-area="tomari-conv"] .restaurant-hours,
+[data-area="grantia-conv"] .restaurant-hours {
+    color: #28a745;
+    font-weight: bold;
+} 
