@@ -14,8 +14,8 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-    font-size: 1rem;
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-size: 14px;
     line-height: 1.5;
     color: #333;
     background-image: url('../images/okinawa-beach.jpg');
@@ -35,7 +35,19 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 max(15px, env(safe-area-inset-left));
+    padding: 0 15px;
+}
+
+/* メインコンテンツ */
+.content-wrapper {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 30px;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 /* 画像の最適化 */
@@ -126,7 +138,6 @@ header {
 
     .content-wrapper {
         flex-direction: column;
-        padding: 15px;
     }
 
     .sidebar {
@@ -142,10 +153,6 @@ header {
 
     .header-right nav ul li {
         margin: 5px;
-    }
-
-    .restaurant-item {
-        padding: 15px;
     }
 }
 
