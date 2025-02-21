@@ -30,8 +30,8 @@ body {
 
 /* ヘッダー */
 header {
-    background-color: rgba(255, 255, 255, 0.95);
-    border-bottom: 1px solid #e9e9e9;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(233, 233, 233, 0.5);
 }
 
 .header-top {
@@ -64,7 +64,7 @@ header {
 
 /* 検索バー */
 .search-bar {
-    background-color: #f8f8f8;
+    background-color: rgba(248, 248, 248, 0.85);
     padding: 15px 20px;
 }
 
@@ -120,7 +120,7 @@ header {
     max-width: 1200px;
     margin: 20px auto;
     gap: 30px;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.85);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -131,7 +131,7 @@ header {
     max-width: 1200px;
     margin: 10px auto;
     font-size: 12px;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.85);
     padding: 10px;
     border-radius: 4px;
 }
@@ -156,72 +156,54 @@ header {
 }
 
 .area-list > ul > li {
-    margin-bottom: 20px;
-}
-
-.area-list > ul > li:last-child {
-    margin-bottom: 0;
-}
-
-.category-name {
-    font-weight: bold;
-    color: #333;
-    padding: 8px 0;
-    margin-bottom: 5px;
-    border-bottom: 1px solid #e9e9e9;
-}
-
-/* 居酒屋カテゴリーの背景設定 */
-.area-list > ul > li:first-child {
-    background-image: url('../images/izakaya-bg.jpg');
-    background-size: cover;
-    background-position: center;
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #e9e9e9;
 }
 
-.area-list > ul > li:first-child .category-name {
-    color: #fff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-    border-bottom-color: rgba(255, 255, 255, 0.3);
+.area-list > ul > li .category-name {
+    color: #333;
     font-size: 18px;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #fff;
     border-radius: 4px;
     margin-bottom: 10px;
+    border-bottom: 1px solid #e9e9e9;
 }
 
-.area-list > ul > li:first-child .sub-area-list a {
-    color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-    background-color: rgba(0, 0, 0, 0.5);
+.area-list > ul > li .sub-area-list a {
+    color: #0066cc;
     padding: 8px 12px;
     border-radius: 4px;
     display: block;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: #fff;
 }
 
-.area-list > ul > li:first-child .sub-area-list a:hover {
-    background-color: rgba(0, 0, 0, 0.7);
+.area-list > ul > li .sub-area-list a:hover {
+    background-color: #f0f0f0;
     text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.area-list > ul > li:first-child .sub-area-list li {
+.area-list > ul > li .sub-area-list li {
     margin: 10px 0;
 }
 
-.sub-area-list {
-    padding-left: 15px;
+/* 居酒屋カテゴリーの背景設定を削除（共通スタイルに統合） */
+.area-list > ul > li:first-child {
+    margin-bottom: 20px;
 }
 
-.sub-area-list li {
-    margin: 8px 0;
-}
-
-.area-list a {
-    text-decoration: none;
+/* 居酒屋エリアのリンク色を修正 */
+.area-list > ul > li a {
     color: #0066cc;
+    text-decoration: none;
 }
 
 .map-view {
@@ -272,49 +254,41 @@ header {
 }
 
 .restaurant-item {
-    border: 1px solid #e9e9e9;
+    border: 1px solid rgba(233, 233, 233, 0.5);
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 /* 居酒屋店舗の背景設定 */
 [data-area="tomari"], [data-area="grantia"] {
-    background-image: url('../images/izakaya-bg.jpg');
-    background-size: cover;
-    background-position: center;
     position: relative;
+    background-color: #fff;
+    border: 1px solid #e9e9e9;
 }
 
 [data-area="tomari"]::before, [data-area="grantia"]::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 4px;
+    display: none;
 }
 
 [data-area="tomari"] .restaurant-name,
 [data-area="grantia"] .restaurant-name {
     position: relative;
-    color: #fff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    color: #333;
 }
 
 [data-area="tomari"] .restaurant-info,
 [data-area="grantia"] .restaurant-info {
     position: relative;
-    color: #fff;
+    color: #666;
 }
 
 [data-area="tomari"] .restaurant-price,
 [data-area="grantia"] .restaurant-price,
 [data-area="tomari"] .restaurant-hours,
 [data-area="grantia"] .restaurant-hours {
-    color: #fff;
+    color: #666;
 }
 
 .restaurant-item:hover {
