@@ -17,6 +17,17 @@ body {
     min-height: 100vh;
 }
 
+/* レスポンシブ対応の基本設定 */
+.content-wrapper, 
+.header-top,
+.search-bar form,
+.breadcrumb {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
 /* ヘッダー */
 header {
     background-color: rgba(255, 255, 255, 0.95);
@@ -59,8 +70,7 @@ header {
 
 .search-bar form {
     display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -71,19 +81,16 @@ header {
     border-radius: 4px;
 }
 
-.search-area {
-    position: relative;
-    flex: 2;
-}
-
+.search-area,
 .search-keyword {
-    flex: 2;
+    flex: 2 1 200px;
 }
 
 .search-date,
 .search-time,
-.search-people {
-    flex: 1;
+.search-people,
+.search-options {
+    flex: 1 1 150px;
 }
 
 .clear-button {
@@ -98,6 +105,7 @@ header {
 }
 
 .search-button {
+    flex: 0 0 auto;
     background-color: #FA0;
     color: white;
     border: none;
@@ -350,4 +358,99 @@ header {
 [data-area="grantia-conv"] .restaurant-hours {
     color: #28a745;
     font-weight: bold;
+}
+
+/* タブレット用メディアクエリ */
+@media screen and (max-width: 1024px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .header-right nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .header-right nav ul li {
+        margin: 5px;
+    }
+}
+
+/* スマートフォン用メディアクエリ */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 13px;
+    }
+
+    .header-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .header-left {
+        margin-bottom: 10px;
+    }
+
+    .search-bar form {
+        flex-direction: column;
+    }
+
+    .search-area,
+    .search-keyword,
+    .search-date,
+    .search-time,
+    .search-people,
+    .search-options {
+        width: 100%;
+        flex: 1 1 auto;
+    }
+
+    .restaurant-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .restaurant-item {
+        padding: 15px;
+    }
+
+    .restaurant-name {
+        font-size: 16px;
+    }
+
+    .result-tabs {
+        justify-content: center;
+    }
+
+    .area-list > ul > li:first-child {
+        padding: 10px;
+    }
+}
+
+/* 小さいスマートフォン用メディアクエリ */
+@media screen and (max-width: 480px) {
+    .header-right nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header-right nav ul li {
+        margin: 5px 0;
+    }
+
+    .result-count {
+        text-align: center;
+    }
+
+    .restaurant-item {
+        margin-bottom: 15px;
+    }
 } 
