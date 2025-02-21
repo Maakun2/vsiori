@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>保存リスト - バンガード旅のおとも</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-left">
+                <a href="/" class="logo">
+                    <img src="images/logo.png" alt="まさログ風ロゴ">
+                </a>
+            </div>
+            <div class="header-right">
+                <nav>
+                    <ul>
+                        <li><a href="#">バンガード旅のおともについて</a></li>
+                        <li><a href="index.html">トップページ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="breadcrumb">
+            <a href="index.html">バンガード旅のおとも</a> > <span>保存リスト</span>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="main-content">
+                <h1>保存リスト</h1>
+                <div class="search-results">
+                    <div class="result-header">
+                        <div class="result-tabs">
+                            <a href="#" class="active sort-link" data-sort="rating">評価順</a>
+                            <a href="#" class="sort-link" data-sort="hours">営業時刻順</a>
+                        </div>
+                    </div>
+                    <div class="result-count"></div>
+                    <div class="restaurant-list"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const restaurantList = document.querySelector('.restaurant-list');
+            const resultCount = document.querySelector('.result-count');
+            const sortLinks = document.querySelectorAll('.sort-link');
+            
+            // 保存リストの取得
+            const savedRestaurants = JSON.parse(localStorage.getItem('savedRestaurants')) || [];
+
+            // 保存リストの表示
+            function displaySavedRestaurants() {
+                restaurantList.innerHTML = '';
+                savedRestaurants.forEach(restaurant => {
+                    const restaurantElement = document.createElement('div');
+                    restaurantElement.className = 'restaurant-item';
+                    restaurantElement.setAttribute('data-area', restaurant.area);
+                    
+                    restaurantElement.innerHTML = `
+                        <div class="restaurant-name">${restaurant.name}</div>
+                        <div class="restaurant-info">
+                            ${restaurant.rating ? `<span class="restaurant-rating">${restaurant.rating}</span>` : ''}
+                            ${restaurant.price ? `<span class="restaurant-price">${restaurant.price}</span>` : ''}
+                            ${restaurant.hours ? `<span class="restaurant-hours">${restaurant.hours}</span>` : ''}
+                        </div>
+                        <button class="save-button saved" onclick="removeFromSavedList('${restaurant.name}')">
+                            <i class="fas fa-bookmark"></i>
+                        </button>
+                    `;
+
+                    // Google検索へのリンク
+                    restaurantElement.addEventListener('click', function(e) {
+                        if (!e.target.classList.contains('save-button')) {
+                            let location = '';
+                            if (restaurant.area === 'tomari' || restaurant.area === 'tomari-conv') {
+                                location = '那覇+泊港';
+                            } else if (restaurant.area === 'grantia' || restaurant.area === 'grantia-conv') {
+                                location = '那覇';
+                            } else {
+                                location = '那覇+国際通り';
+                            }
+                            const searchQuery = encodeURIComponent(`${restaurant.name} ${location}`);
+                            window.open(`https://www.google.com/search?q=${searchQuery}`, '_blank');
+                        }
+                    });
+
+                    restaurantList.appendChild(restaurantElement);
+                });
+
+                // 件数表示の更新
+                resultCount.textContent = `1～${savedRestaurants.length} 件を表示 / 全 ${savedRestaurants.length} 件`;
+            }
+
+            // 保存リストから削除
+            window.removeFromSavedList = function(restaurantName) {
+                const index = savedRestaurants.findIndex(r => r.name === restaurantName);
+                if (index !== -1) {
+                    savedRestaurants.splice(index, 1);
+                    localStorage.setItem('savedRestaurants', JSON.stringify(savedRestaurants));
+                    displaySavedRestaurants();
+                }
+            };
+
+            // 並び替え関数
+            function sortRestaurants(sortType) {
+                savedRestaurants.sort((a, b) => {
+                    if (sortType === 'rating') {
+                        const ratingA = parseFloat(a.rating?.replace('★', '') || '0');
+                        const ratingB = parseFloat(b.rating?.replace('★', '') || '0');
+                        return ratingB - ratingA;
+                    } else if (sortType === 'hours') {
+                        const hoursA = a.hours?.match(/～(\d+):(\d+)/) || ['', '24', '00'];
+                        const hoursB = b.hours?.match(/～(\d+):(\d+)/) || ['', '24', '00'];
+                        const timeA = parseInt(hoursA[1]) * 60 + parseInt(hoursA[2]);
+                        const timeB = parseInt(hoursB[1]) * 60 + parseInt(hoursB[2]);
+                        return timeB - timeA;
+                    }
+                    return 0;
+                });
+                displaySavedRestaurants();
+            }
+
+            // 並び替えタブのクリックイベント
+            sortLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sortLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    sortRestaurants(this.getAttribute('data-sort'));
+                });
+            });
+
+            // 初期表示
+            sortRestaurants('rating');
+        });
+    </script>
+</body>
+</html> 
