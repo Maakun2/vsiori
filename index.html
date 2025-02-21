@@ -60,7 +60,7 @@
 
     <main>
         <div class="breadcrumb">
-            <a href="#">バンガード旅のおとも</a> > <a href="#">全国 グルメ</a>
+            <a href="#">バンガード旅のおとも</a> > <a href="#">全てのお店</a>
         </div>
 
         <div class="content-wrapper">
@@ -98,7 +98,7 @@
             </aside>
 
             <div class="main-content">
-                <h1>全国のお店</h1>
+                <h1>全てのお店</h1>
                 <div class="search-results">
                     <div class="result-header">
                         <div class="result-tabs">
@@ -546,6 +546,18 @@
                     e.preventDefault();
                     const selectedArea = this.getAttribute('data-area');
                     let visibleCount = 0;
+
+                    // 背景画像の切り替え
+                    const body = document.querySelector('body');
+                    if (selectedArea === 'tomari' || selectedArea === 'grantia') {
+                        body.style.backgroundImage = "url('images/izakaya-bg.jpg')";
+                    } else if (selectedArea === 'tomari-conv' || selectedArea === 'grantia-conv') {
+                        body.style.backgroundImage = "url('images/convenience-store.jpg')";
+                    } else if (selectedArea === 'souvenir') {
+                        body.style.backgroundImage = "url('images/souvenir-shop.jpg')";
+                    } else {
+                        body.style.backgroundImage = "url('images/okinawa-beach.jpg')";
+                    }
 
                     restaurants.forEach(restaurant => {
                         if (restaurant.getAttribute('data-area') === selectedArea) {
