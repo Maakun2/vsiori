@@ -547,6 +547,17 @@
                     const selectedArea = this.getAttribute('data-area');
                     let visibleCount = 0;
 
+                    // 地図リンクの更新
+                    const mapLink = document.querySelector('.map-view a');
+                    if (selectedArea === 'tomari' || selectedArea === 'tomari-conv') {
+                        mapLink.href = "https://www.google.com/maps/search/?api=1&query=ルートイン那覇泊港";
+                    } else if (selectedArea === 'grantia' || selectedArea === 'grantia-conv') {
+                        mapLink.href = "https://www.google.com/maps/search/?api=1&query=ルートイングランティア那覇";
+                    } else if (selectedArea === 'souvenir') {
+                        mapLink.href = "https://www.google.com/maps/search/?api=1&query=那覇国際通り";
+                    }
+                    mapLink.target = "_blank"; // 新しいタブで開く
+
                     // 背景画像の切り替え
                     const body = document.querySelector('body');
                     if (selectedArea === 'tomari' || selectedArea === 'grantia') {
