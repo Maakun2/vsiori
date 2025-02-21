@@ -19,37 +19,15 @@
                 <nav>
                     <ul>
                         <li><a href="#">バンガード旅のおともについて</a></li>
-                        <li><a href="#">保有ポイント</a></li>
-                        <li><a href="#">予約確認</a></li>
-                        <li><a href="#">行ったお店</a></li>
-                        <li><a href="#">保存リスト</a></li>
-                        <li><a href="#">無料会員登録/ログイン</a></li>
+                        <li><a href="saved-list.html">保存リスト</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
         <div class="search-bar">
             <form action="#" method="get">
-                <div class="search-area">
-                    <input type="text" placeholder="エリア・駅 [例:渋谷、新宿]" value="那覇 泊港">
-                    <button type="button" class="clear-button">✕</button>
-                </div>
                 <div class="search-keyword">
-                    <input type="text" placeholder="キーワード [例:焼肉、店名、個室]">
-                </div>
-                <div class="search-date">
-                    <input type="text" value="2025/2/20(木)">
-                </div>
-                <div class="search-time">
-                    <input type="text" value="19:00">
-                </div>
-                <div class="search-people">
-                    <input type="text" value="2名">
-                </div>
-                <div class="search-options">
-                    <select>
-                        <option>絞り込む</option>
-                    </select>
+                    <input type="text" placeholder="店舗名、価格帯、営業時間で検索">
                 </div>
                 <button type="submit" class="search-button">
                     <i class="fas fa-search"></i>
@@ -107,16 +85,19 @@
                         </div>
                     </div>
                     <div class="result-count">
-                        1～20 件を表示 / 全 874004 件
+                        1～40 件を表示 / 全 40 件
                     </div>
                     <div class="restaurant-list">
-                        <div class="restaurant-item" data-area="tomari">
+                        <div class="restaurant-item" data-area="tomari" onclick="window.open('https://www.google.com/search?q=大衆居酒屋らいず酒場+那覇', '_blank')">
                             <div class="restaurant-name">大衆居酒屋らいず酒場 【RAIZU SAKABA】串焼き</div>
                             <div class="restaurant-info">
                                 <span class="restaurant-rating">★4.8</span>
                                 <span class="restaurant-price">¥4,000~5,000</span>
                                 <span class="restaurant-hours">営業時間：～3:00</span>
                             </div>
+                            <button class="save-button" onclick="event.stopPropagation()">
+                                <i class="fas fa-bookmark"></i>
+                            </button>
                         </div>
                         <div class="restaurant-item" data-area="tomari">
                             <div class="restaurant-name">TACHINOMIYA BAR 国際通り店</div>
@@ -500,11 +481,143 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // エリアリンクのクリックイベント
             const areaLinks = document.querySelectorAll('.area-link');
             const restaurants = document.querySelectorAll('.restaurant-item');
             const resultCount = document.querySelector('.result-count');
             const sortLinks = document.querySelectorAll('.sort-link');
+            const searchForm = document.querySelector('.search-bar form');
+            const searchKeywordInput = document.querySelector('.search-keyword input');
+
+            // 保存リストの初期化
+            let savedRestaurants = JSON.parse(localStorage.getItem('savedRestaurants')) || [];
+
+            // 保存ボタンの追加
+            restaurants.forEach(restaurant => {
+                const saveButton = document.createElement('button');
+                saveButton.className = 'save-button';
+                saveButton.innerHTML = '<i class="fas fa-bookmark"></i>';
+                saveButton.onclick = function(e) {
+                    e.stopPropagation();
+                    const restaurantName = restaurant.querySelector('.restaurant-name').textContent;
+                    const restaurantInfo = {
+                        name: restaurantName,
+                        rating: restaurant.querySelector('.restaurant-rating')?.textContent || '',
+                        price: restaurant.querySelector('.restaurant-price')?.textContent || '',
+                        hours: restaurant.querySelector('.restaurant-hours')?.textContent || '',
+                        area: restaurant.getAttribute('data-area')
+                    };
+
+                    const index = savedRestaurants.findIndex(r => r.name === restaurantName);
+                    if (index === -1) {
+                        savedRestaurants.push(restaurantInfo);
+                        this.classList.add('saved');
+                    } else {
+                        savedRestaurants.splice(index, 1);
+                        this.classList.remove('saved');
+                    }
+
+                    localStorage.setItem('savedRestaurants', JSON.stringify(savedRestaurants));
+                };
+
+                // 既に保存されている場合はボタンの状態を更新
+                if (savedRestaurants.some(r => r.name === restaurant.querySelector('.restaurant-name').textContent)) {
+                    saveButton.classList.add('saved');
+                }
+
+                restaurant.appendChild(saveButton);
+            });
+
+            // 検索フォームのsubmitイベント
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const keyword = searchKeywordInput.value.toLowerCase();
+                filterRestaurants('search', keyword);
+            });
+
+            // エリアリンクのクリックイベント
+            areaLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const selectedArea = this.getAttribute('data-area');
+                    filterRestaurants('area', selectedArea, this.textContent);
+                });
+            });
+
+            // フィルター関数
+            function filterRestaurants(filterType, value, areaText = '') {
+                let visibleCount = 0;
+
+                if (filterType === 'search') {
+                    restaurants.forEach(restaurant => {
+                        const name = restaurant.querySelector('.restaurant-name').textContent.toLowerCase();
+                        const info = restaurant.querySelector('.restaurant-info').textContent.toLowerCase();
+                        
+                        if (name.includes(value) || info.includes(value)) {
+                            restaurant.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            restaurant.style.display = 'none';
+                        }
+                    });
+
+                    updateUI(`"${value}" の検索結果`, '検索結果', visibleCount);
+                } else if (filterType === 'area') {
+                    // 地図リンクの更新
+                    const mapLink = document.querySelector('.map-view a');
+                    if (value === 'tomari' || value === 'tomari-conv') {
+                        mapLink.href = "https://www.google.com/maps/search/?api=1&query=ルートイン那覇泊港";
+                    } else if (value === 'grantia' || value === 'grantia-conv') {
+                        mapLink.href = "https://www.google.com/maps/search/?api=1&query=ルートイングランティア那覇";
+                    } else if (value === 'souvenir') {
+                        mapLink.href = "https://www.google.com/maps/search/?api=1&query=那覇国際通り";
+                    }
+                    mapLink.target = "_blank";
+
+                    // 背景画像の切り替え
+                    const body = document.querySelector('body');
+                    if (value === 'tomari' || value === 'grantia') {
+                        body.style.backgroundImage = "url('images/izakaya-bg.jpg')";
+                    } else if (value === 'tomari-conv' || value === 'grantia-conv') {
+                        body.style.backgroundImage = "url('images/convenience-store.jpg')";
+                    } else if (value === 'souvenir') {
+                        body.style.backgroundImage = "url('images/souvenir-shop.jpg')";
+                    } else {
+                        body.style.backgroundImage = "url('images/okinawa-beach.jpg')";
+                    }
+
+                    restaurants.forEach(restaurant => {
+                        if (restaurant.getAttribute('data-area') === value) {
+                            restaurant.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            restaurant.style.display = 'none';
+                        }
+                    });
+
+                    updateUI(`${areaText}のお店`, areaText, visibleCount);
+                }
+
+                // 評価順で並び替え
+                sortRestaurants('rating');
+            }
+
+            // UI更新関数
+            function updateUI(title, breadcrumbText, count) {
+                resultCount.textContent = `1～${count} 件を表示 / 全 ${count} 件`;
+                
+                const breadcrumb = document.querySelector('.breadcrumb');
+                breadcrumb.innerHTML = `<a href="#">バンガード旅のおとも</a> > <a href="#">${breadcrumbText}</a>`;
+
+                const mainTitle = document.querySelector('.main-content h1');
+                mainTitle.textContent = title;
+
+                sortLinks.forEach(l => {
+                    l.classList.remove('active');
+                    if (l.getAttribute('data-sort') === 'rating') {
+                        l.classList.add('active');
+                    }
+                });
+            }
 
             // 並び替え関数
             function sortRestaurants(sortType) {
@@ -541,60 +654,23 @@
                 });
             });
 
-            areaLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const selectedArea = this.getAttribute('data-area');
-                    let visibleCount = 0;
-
-                    // 地図リンクの更新
-                    const mapLink = document.querySelector('.map-view a');
-                    if (selectedArea === 'tomari' || selectedArea === 'tomari-conv') {
-                        mapLink.href = "https://www.google.com/maps/search/?api=1&query=ルートイン那覇泊港";
-                    } else if (selectedArea === 'grantia' || selectedArea === 'grantia-conv') {
-                        mapLink.href = "https://www.google.com/maps/search/?api=1&query=ルートイングランティア那覇";
-                    } else if (selectedArea === 'souvenir') {
-                        mapLink.href = "https://www.google.com/maps/search/?api=1&query=那覇国際通り";
-                    }
-                    mapLink.target = "_blank"; // 新しいタブで開く
-
-                    // 背景画像の切り替え
-                    const body = document.querySelector('body');
-                    if (selectedArea === 'tomari' || selectedArea === 'grantia') {
-                        body.style.backgroundImage = "url('images/izakaya-bg.jpg')";
-                    } else if (selectedArea === 'tomari-conv' || selectedArea === 'grantia-conv') {
-                        body.style.backgroundImage = "url('images/convenience-store.jpg')";
-                    } else if (selectedArea === 'souvenir') {
-                        body.style.backgroundImage = "url('images/souvenir-shop.jpg')";
+            // 店舗クリックイベントの設定
+            restaurants.forEach(item => {
+                item.addEventListener('click', function() {
+                    const restaurantName = this.querySelector('.restaurant-name').textContent;
+                    const area = this.getAttribute('data-area');
+                    let location = '';
+                    
+                    if (area === 'tomari' || area === 'tomari-conv') {
+                        location = '那覇+泊港';
+                    } else if (area === 'grantia' || area === 'grantia-conv') {
+                        location = '那覇';
                     } else {
-                        body.style.backgroundImage = "url('images/okinawa-beach.jpg')";
+                        location = '那覇+国際通り';
                     }
-
-                    restaurants.forEach(restaurant => {
-                        if (restaurant.getAttribute('data-area') === selectedArea) {
-                            restaurant.style.display = 'block';
-                            visibleCount++;
-                        } else {
-                            restaurant.style.display = 'none';
-                        }
-                    });
-
-                    resultCount.textContent = `1～${visibleCount} 件を表示 / 全 ${visibleCount} 件`;
-
-                    const breadcrumb = document.querySelector('.breadcrumb');
-                    breadcrumb.innerHTML = `<a href="#">バンガード旅のおとも</a> > <a href="#">${this.textContent}</a>`;
-
-                    const mainTitle = document.querySelector('.main-content h1');
-                    mainTitle.textContent = `${this.textContent}のお店`;
-
-                    // エリア選択時にデフォルトの評価順で並び替え
-                    sortRestaurants('rating');
-                    sortLinks.forEach(l => {
-                        l.classList.remove('active');
-                        if (l.getAttribute('data-sort') === 'rating') {
-                            l.classList.add('active');
-                        }
-                    });
+                    
+                    const searchQuery = encodeURIComponent(`${restaurantName} ${location}`);
+                    window.open(`https://www.google.com/search?q=${searchQuery}`, '_blank');
                 });
             });
 
