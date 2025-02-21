@@ -164,11 +164,20 @@ header {
     }
 
     body {
-        background-image: url('../images/sunset-beach.jpg'); /* 新しい背景画像 */
+        background-image: url('../images/sunset-beach.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: scroll;
         -webkit-overflow-scrolling: touch;
+    }
+
+    /* 居酒屋エリアが選択された時の背景 */
+    body[data-selected-area="tomari"],
+    body[data-selected-area="grantia"] {
+        background-image: url('../images/night-market.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     /* 背景画像の上に半透明のオーバーレイを追加 */
@@ -179,8 +188,14 @@ header {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.3);
         z-index: -1;
+    }
+
+    /* 居酒屋エリア選択時は暗めのオーバーレイ */
+    body[data-selected-area="tomari"]::before,
+    body[data-selected-area="grantia"]::before {
+        background: rgba(0, 0, 0, 0.4);
     }
 
     .content-wrapper {
