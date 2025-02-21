@@ -539,6 +539,13 @@
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const selectedArea = this.getAttribute('data-area');
+                    
+                    // スマートフォンでの背景画像切り替え
+                    document.body.removeAttribute('data-selected-area');
+                    if (selectedArea === 'tomari' || selectedArea === 'grantia') {
+                        document.body.setAttribute('data-selected-area', selectedArea);
+                    }
+                    
                     filterRestaurants('area', selectedArea, this.textContent);
                 });
             });
