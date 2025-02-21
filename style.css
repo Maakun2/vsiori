@@ -10,10 +10,16 @@ body {
     font-size: 14px;
     line-height: 1.5;
     color: #333;
+    background-image: url('../images/okinawa-beach.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
 }
 
 /* ヘッダー */
 header {
+    background-color: rgba(255, 255, 255, 0.95);
     border-bottom: 1px solid #e9e9e9;
 }
 
@@ -106,6 +112,10 @@ header {
     max-width: 1200px;
     margin: 20px auto;
     gap: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
 /* パンくずリスト */
@@ -113,6 +123,9 @@ header {
     max-width: 1200px;
     margin: 10px auto;
     font-size: 12px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px;
+    border-radius: 4px;
 }
 
 .breadcrumb a {
