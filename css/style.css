@@ -20,7 +20,7 @@ body {
     line-height: 1.5;
     color: #333;
     background-image: url('../images/okinawa-beach.jpg');
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -221,7 +221,7 @@ header {
 
     body {
         background-image: url('../images/okinawa-beach.jpg');
-        background-size: contain;
+        background-size: cover;
         background-position: center;
         background-attachment: fixed;
         background-repeat: no-repeat;
@@ -256,6 +256,20 @@ header {
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
+    }
+
+    /* iOS Safari用の背景固定対策 */
+    @supports (-webkit-touch-callout: none) {
+        body,
+        body[data-selected-area="tomari"],
+        body[data-selected-area="grantia"],
+        body[data-selected-area="tomari-conv"],
+        body[data-selected-area="grantia-conv"],
+        body[data-selected-area="souvenir"] {
+            background-attachment: scroll;
+            background-size: cover;
+            min-height: -webkit-fill-available;
+        }
     }
 
     /* 背景画像の上に半透明のオーバーレイを追加 */
