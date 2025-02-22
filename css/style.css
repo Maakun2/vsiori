@@ -538,13 +538,17 @@ header {
 /* コンビニ用のスタイル */
 [data-area="tomari-conv"] .restaurant-info,
 [data-area="grantia-conv"] .restaurant-info {
-    justify-content: flex-end;
+    justify-content: flex-start;
+    margin-bottom: 30px;  /* ボタンとの重なりを防ぐため */
 }
 
 [data-area="tomari-conv"] .restaurant-hours,
 [data-area="grantia-conv"] .restaurant-hours {
     color: #28a745;
     font-weight: bold;
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
 }
 
 /* パンくずリスト */
