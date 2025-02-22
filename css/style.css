@@ -134,6 +134,9 @@ img {
 header {
     background-color: rgba(255, 255, 255, 0.85);
     border-bottom: 1px solid rgba(233, 233, 233, 0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .header-top {
@@ -143,25 +146,44 @@ header {
     padding: 10px 20px;
     max-width: 1200px;
     margin: 0 auto;
+    min-height: 50px;
+}
+
+.logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
 }
 
 .logo img {
     height: 30px;
+    width: auto;
+    object-fit: contain;
+}
+
+.header-right {
+    flex: 0 0 auto;
+    margin-left: 20px;
 }
 
 .header-right nav ul {
     display: flex;
     list-style: none;
+    gap: 20px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
 }
 
 .header-right nav ul li {
-    margin-left: 20px;
+    margin: 0;
 }
 
 .header-right nav ul li a {
     text-decoration: none;
     color: #333;
     font-size: 12px;
+    padding: 5px 10px;
+    display: block;
 }
 
 /* 検索バー */
@@ -279,10 +301,23 @@ header {
     }
 
     .header-top {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: max(10px, env(safe-area-inset-top)) max(15px, env(safe-area-inset-right)) 10px max(15px, env(safe-area-inset-left));
+        flex-direction: row;
+        padding: 10px;
+        min-height: 40px;
+    }
+
+    .logo img {
+        height: 25px;
+        width: auto;
+    }
+
+    .header-right nav ul {
+        gap: 10px;
+    }
+
+    .header-right nav ul li a {
+        font-size: 11px;
+        padding: 3px 8px;
     }
 
     .search-bar {
@@ -321,14 +356,14 @@ header {
 
 @media screen and (max-width: 480px) {
     .header-right nav ul {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
     }
 
     .header-right nav ul li {
-        margin: 5px 0;
-        width: 100%;
-        text-align: center;
+        margin: 0;
+        width: auto;
+        text-align: left;
     }
 
     .result-count {
