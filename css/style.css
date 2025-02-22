@@ -29,6 +29,22 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     position: relative;
+    overflow-x: hidden;
+}
+
+body::after {
+    content: '';
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -2;
 }
 
 /* 居酒屋エリアが選択された時の背景 */
@@ -220,80 +236,42 @@ header {
     }
 
     body {
+        background: none;
+    }
+
+    body::after {
         background-image: url('../images/okinawa-beach.jpg');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-color: #f0f0f0;
-        -webkit-overflow-scrolling: touch;
     }
 
     /* 居酒屋エリアが選択された時の背景 */
-    body[data-selected-area="tomari"],
-    body[data-selected-area="grantia"] {
-        background-image: url('../images/izakaya-bg.jpg') !important;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+    body[data-selected-area="tomari"]::after,
+    body[data-selected-area="grantia"]::after {
+        background-image: url('../images/izakaya-bg.jpg');
     }
 
     /* コンビニエリアが選択された時の背景 */
-    body[data-selected-area="tomari-conv"],
-    body[data-selected-area="grantia-conv"] {
-        background-image: url('../images/convenience-store.jpg') !important;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+    body[data-selected-area="tomari-conv"]::after,
+    body[data-selected-area="grantia-conv"]::after {
+        background-image: url('../images/convenience-store.jpg');
     }
 
     /* お土産屋エリアが選択された時の背景 */
-    body[data-selected-area="souvenir"] {
-        background-image: url('../images/souvenir-shop.jpg') !important;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+    body[data-selected-area="souvenir"]::after {
+        background-image: url('../images/souvenir-shop.jpg');
     }
 
     /* iOS Safari用の背景固定対策 */
     @supports (-webkit-touch-callout: none) {
-        body,
-        body[data-selected-area="tomari"],
-        body[data-selected-area="grantia"],
-        body[data-selected-area="tomari-conv"],
-        body[data-selected-area="grantia-conv"],
-        body[data-selected-area="souvenir"] {
+        body::after {
+            position: absolute;
+            min-height: calc(100vh + 100px);
             background-attachment: scroll;
-            background-size: cover;
-            min-height: -webkit-fill-available;
         }
-    }
 
-    /* 背景画像の上に半透明のオーバーレイを追加 */
-    body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: -1;
-    }
-
-    /* 居酒屋エリア選択時は暗めのオーバーレイ */
-    body[data-selected-area="tomari"]::before,
-    body[data-selected-area="grantia"]::before {
-        background: rgba(0, 0, 0, 0.4);
-    }
-
-    /* コンビニエリア選択時は明るめのオーバーレイ */
-    body[data-selected-area="tomari-conv"]::before,
-    body[data-selected-area="grantia-conv"]::before {
-        background: rgba(255, 255, 255, 0.1);
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
     }
 
     .content-wrapper {
